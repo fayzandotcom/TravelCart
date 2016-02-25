@@ -1,0 +1,27 @@
+
+			<div class="span9" >
+
+				<div class="hero-unit">
+					<h1 class="">Tropica Travel Ltd.</h1>
+					<p class="">We offer diversified range of services to leisure and corporate travelers!</p>
+				</div>
+
+				<ul class="thumbnails">
+					<li class="span3" ng-repeat="product in products">
+						<div class="thumbnail">
+							<img src="" alt="">
+							<div class="caption">
+                                <a href="#/product/{{product.id}}"><img src="{{product.image}}" style="width: 300px;height: 200px"></a>
+								<h4>{{product.name}}</h4>
+								<a class="btn btn-primary" href="#/product/{{product.id}}">View</a>
+                                <button class="btn btn-success" type="submit"
+                                        ng-click="cartObj.addItem(product.id, product.name, product.price, 1)">Add to Cart</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+
+

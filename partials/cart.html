@@ -1,0 +1,54 @@
+
+
+<div class="span9" ng-controller="CartDetailCtrl">
+    <h2>Shopping Cart</h2>
+    <form>
+        <div ng-hide="hasItems()"><h4>No items in cart!</h4></div>
+        <table class="table table-striped table-hover" ng-show="hasItems()">
+            <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td>{{item.name}}</td>
+                <td>
+                    <input id="qty-{{item.id}}" type="text" class="span1" value="{{item.quantity}}" disabled
+                            />
+                    &nbsp;<button class="btn btn-link" type="submit" ng-click="addItem('{{item.id}}', '{{item.name}}', '{{item.price}}', '1')"><i class="icon-plus"></i></button>
+                    <button class="btn btn-link" type="submit" ng-click="addItem('{{item.id}}', '{{item.name}}', '{{item.price}}', '-1')"><i class="icon-minus"></i></button>
+                    <button class="btn btn-link" type="submit" ng-click="deleteItem('{{item.id}}')"><i class="icon-trash"></i></button>
+                </td>
+                <td>{{item.price}}</td>
+                <td>{{item.price * item.quantity}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <div ng-show="hasItems()">
+        <dl class="dl-horizontal pull-right">
+
+            <!-- not needed
+            <dt>Sub-total:</dt>
+            <dd>$999.99</dd>
+
+            <dt>Shipping Cost:</dt>
+            <dd>$0.01</dd>
+            -->
+
+            <dt>Total:</dt>
+            <dd>{{totalPrice() | currency}}</dd>
+        </dl>
+        <div class="clearfix"></div>
+        <button class="btn btn-success pull-right" type="submit" ng-click="checkOut()">Check Out</button>
+        &nbsp;
+        <button class="btn btn-success pull-right" type="submit" ng-click="clearCart()">Clear Cart</button>
+    </div>
+    <a href="#/home" class="btn btn-primary">Continue Shopping</a>
+
+</div>

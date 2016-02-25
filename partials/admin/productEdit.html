@@ -1,0 +1,52 @@
+
+    <div class="span9" ng-controller="ProductEditCtrl">
+        <div ng-hide="userObj.role == 'admin'">
+            <h3>Access Denied!</h3>
+        </div>
+        <div ng-show="userObj.role == 'admin'">
+            <h2>Edit Product</h2>
+
+            <div class="alert alert-success" ng-show="successMsg">
+                <p>{{successMsg}}</p>
+            </div>
+            <div class="alert alert-danger" ng-show="errorMsg">
+                <p>{{errorMsg}}</p>
+            </div>
+
+            <div>
+                <form class="form login-form">
+                    <label>Name</label>
+                    <input type="hidden" id="pid" value="{{product.id}}">
+                    <input type="text" id="name" value="{{product.name}}" required />
+
+                    <label>Description</label>
+                    <textarea id="desc" required="required">{{product.description}}</textarea>
+
+                    <label>Price</label>
+                    <input type="text" id="price" value="{{product.price}}" required />
+
+                    <label>Image</label>
+                    <div ng-controller="ImageUploadCtrl">
+                        <a href="{{product.image}}" ><img id="selImg" src="{{product.image}}" style="width: 30px;height: 20px" /> </a>
+                        <input type="file" name="file" id="fileToUpload" onchange="angular.element(this).scope().uploadFile(this.files)" />
+                    </div>
+
+                    <label>Date</label>
+                    <input type="text" id="date" class="datepicker" value="{{product.date}}" data-date-format="yyyy-mm-dd" required />
+
+                    <label>Days</label>
+                    <input type="text" id="days" value="{{product.days}}" required />
+
+                    <label>Nights</label>
+                    <input type="text" id="nights" value="{{product.nights}}" required />
+
+                    <br /><br />
+
+                    <button class="btn btn-success" type="submit" ng-click="editProduct()">Save</button>
+                    <a ng-href="#/admin/product/mgt" class="btn btn-success">Back</a>
+                </form>
+            </div>
+
+            <br />
+        </div>
+    </div>

@@ -1,0 +1,22 @@
+
+
+    <div class="span9" ng-controller="ProductDetailCtrl">
+        <div class="row">
+            <div class="span5">
+                <img src="{{product.image}}">
+            </div>
+
+            <div class="span4">
+                <h4>{{product.name}}</h4>
+                <p>{{product.description}}</p>
+                <h5>Day(s): {{product.days}} | Night(s): {{product.nights}}</h5>
+                <h4>Trip date: {{product.date | date}}</h4>
+                <h4>Price: {{product.price | currency}}</h4>
+                <form>
+                    <button class="btn btn-primary" ng-click="cartObj.addItem(product.id, product.name, product.price, 1)">Add to Chart</button>
+                    <a href="#/home" class="btn btn-primary">Back</a>
+                </form>
+
+            </div>
+        </div>
+    </div>

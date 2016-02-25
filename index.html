@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="travelcartApp">
+<head>
+    <meta charset="utf-8">
+    <title>Travel Cart</title>
+
+    <!-- Included Bootstrap CSS Files -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="./lib/bootstrap-datepicker/css/datepicker.css" />
+    <!-- Includes FontAwesome -->
+    <link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css" />
+    <!-- Css -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <script src="lib/jquery/jquery-1.10.2.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
+    <script src="lib/holder.js"></script>
+
+    <script src="js/user.js"></script>
+    <script src="js/cart.js
+    "></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+
+</head>
+<body>
+
+    <!-- Header Area -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#/home">Travel Cart</a>
+
+                <!--
+                <div class="navbar-form form-search pull-right" ng-controller="SearchCtrl">
+                    <p>
+                        <input type="text" id="startdate" data-date-format="yyyy-mm-dd" placeholder="from date">
+                        <input type="text" id="enddate"  data-date-format="yyyy-mm-dd" placeholder="to date">
+                        <a ng-click="search()" class="btn btn-primary pull-right"> search package</a>
+                    </p>
+                </div>
+                -->
+
+            </div>
+        </div>
+    </div>
+    <!-- END Header Area -->
+
+    <!-- Content Area -->
+    <div class="container" >
+        <div class="row">
+            <div class="span3">
+
+                <!-- Side Bar -->
+                <div class="well" ng-controller="UserCtrl">
+
+                    <!-- Before Signin -->
+                    <div ng-show="userObj.isLogged == '0'">
+                        <!-- Singin Form -->
+                        <form class="form login-form" ng-show="loginFormView == '1'">
+                            <h2>Sign in</h2>
+                            <div>
+                                <label>Email</label>
+                                <input id="email" ng-model="email" type="text" placeholder="e.g. your@domain.com" required />
+
+                                <label>Password</label>
+                                <input id="password" ng-model="password" type="password" placeholder="Password" required/>
+
+                                <br /><br />
+
+                                <button class="btn btn-success" type="submit" ng-click="login()">Login</button>
+                                <button class="btn btn-link" type="submit" ng-click="showRegForm()">New user?</button>
+                            </div>
+                            <br />
+                        </form>
+                        <!-- Registration Form -->
+                        <form class="form login-form" ng-show="regFormView == '1'">
+                            <h2>Register</h2>
+                            <div>
+                                <label>Name</label>
+                                <input id="reg_name" ng-model="reg_name" type="text" value="{{reg_name}}" placeholder="Name" required />
+
+                                <label>Email</label>
+                                <input id="reg_email" ng-model="reg_email" type="email" placeholder="e.g. your@domain.com"
+                                       required  />
+
+                                <label>Password</label>
+                                <input id="reg_password" ng-model="reg_password" type="password" value="{{reg_password}}" placeholder="Password" required/>
+
+                                <label>Re-Password</label>
+                                <input id="reg_repassword" ng-model="reg_repassword" type="password" value="{{reg_repassword}}" placeholder="Re-Password" required />
+
+                                <br /><br />
+
+                                <button class="btn btn-success" type="submit" ng-click="register()">Register</button>
+                                <button class="btn btn-link" type="submit" ng-click="showLoginForm()">Already member?</button>
+                            </div>
+                            <br />
+                        </form>
+                        <div class="alert alert-success" ng-show="successMsg">
+                            <p>{{successMsg}}</p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="errorMsg">
+                            <p>{{errorMsg}}</p>
+                        </div>
+                    </div>
+
+                    <!-- After Singin -->
+                    <div ng-show="userObj.isLogged == '1'">
+                        <div ng-show="userMenuView == '1'">
+                            <p><h4>Hello, {{userObj.name}}</h4></p>
+                            <p>
+                                <button class="btn-link" type="submit" ng-click="showPassChange()">Change Password</button>
+                            </p>
+                            <p>
+                                <button class="btn-link" type="submit" ng-click="logout()">Log Out</button>
+                            </p>
+                        </div>
+                        <!-- Change Password Form -->
+                        <form class="form " ng-show="passChangeView == '1'">
+                            <h3>Change Password</h3>
+                            <div>
+                                <label>Password</label>
+                                <input id="cg_password" ng-model="cg_password" type="password" placeholder="Password" required/>
+
+                                <label>Re-Password</label>
+                                <input id="cg_repassword" ng-model="cg_repassword" type="password" placeholder="Re-Password" required />
+
+                                <br /><br />
+
+                                <button class="btn btn-success" type="submit" ng-click="changePass()">Change</button>
+                                <button class="btn btn-link" type="submit" ng-click="showUserMenu()">Back</button>
+                            </div>
+                            <br />
+                        </form>
+                        <div class="alert alert-success" ng-show="successMsg">
+                            <p>{{successMsg}}</p>
+                        </div>
+                        <div class="alert alert-danger" ng-show="errorMsg">
+                            <p>{{errorMsg}}</p>
+                        </div>
+                    </div>
+
+                    <div ng-show="userObj.role == 'admin'">
+                        <p><h4>Admin Panel</h4></p>
+                        <p><a class="btn-link" ng-href="#/admin/product/mgt">Product Management</a></p>
+                        <p><a class="btn-link" ng-href="#/admin/order/mgt">Order Management</a></p>
+                        <p><a class="btn-link" ng-href="#/admin/comment/mgt">Feedback & Enquiries</a></p>
+                    </div>
+
+                    <div ng-show="userObj.role == 'member'">
+                        <p><h4>Member Panel</h4></p>
+                        <p><a class="btn-link" ng-href="#/member/order/mgt">Order Management</a></p>
+                    </div>
+
+                </div>
+
+                <div class="well" ng-controller="CartSummaryCtrl">
+
+                    <div class="dropdown">
+                        <h4>Your Cart</h4>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#/cart">
+                            <i class="icon-shopping-cart"></i>
+                            {{totalItems()}} item - {{totalPrice() | currency}}
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="well" ng-controller="SearchCtrl">
+                    <h4>Search Tour Packages</h4>
+                    <p>
+                        <input type="text" id="startdate" data-date-format="yyyy-mm-dd">
+                        <input type="text" id="enddate"  data-date-format="yyyy-mm-dd">
+
+                        <a ng-click="search()" class="btn btn-primary pull-right">search</a>
+                    </p>
+                </div>
+
+                <div class="well">
+                    <a href="#/member/comment">Feedback & Enquiry</a>
+                </div>
+
+                <!-- END Side Bar -->
+
+            </div>
+
+            <!-- Main Content Container (multiple views) -->
+            <div class="view-container">
+                <div ng-view class="view-frame"></div>
+            </div>
+            <!-- END Main Content Container -->
+
+        </div>
+    </div>
+    <!-- END Content Area -->
+
+    <hr />
+
+    <!-- Footer Area-->
+    <footer id="footer" class="vspace20">
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <p>&copy; Copyright 2014.&nbsp;All rights reserved.</p>
+                </div>
+                <div class="span6">
+                    <p class="pull-right">Developed by <a href="http://www.linkedin.com/in/fayzansiddiqui" target="_blank">Fayzan Siddiqui</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END Footer Area-->
+
+    <script type="text/javascript">
+
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+        var checkin = $('#startdate').datepicker({
+            onRender: function(date) {
+                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function(ev) {
+                    if (ev.date.valueOf() > checkout.date.valueOf()) {
+                        var newDate = new Date(ev.date)
+                        newDate.setDate(newDate.getDate() + 1);
+                        checkout.setValue(newDate);
+                    }
+                    checkin.hide();
+                    $('#enddate')[0].focus();
+                }).data('datepicker');
+        var checkout = $('#enddate').datepicker({
+            onRender: function(date) {
+                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function(ev) {
+                    checkout.hide();
+                }).data('datepicker');
+    </script>
+
+</body>
+</html>

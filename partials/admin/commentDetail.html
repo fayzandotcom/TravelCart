@@ -1,0 +1,32 @@
+
+    <div class="span9" ng-controller="CommentDetailCtrl">
+        <div ng-hide="userObj.role == 'admin'">
+            <h3>Access Denied!</h3>
+        </div>
+        <div ng-show="userObj.role == 'admin'">
+            <h2>Feedback & Enquiries</h2>
+            <br>
+            <div>
+                <labal><b>Name: </b></labal><span>{{comment.name}}</span>
+                <br>
+                <br>
+                <labal><b>Email: </b></labal><span>{{comment.email}}</span>
+                <br>
+                <br>
+                <labal><b>Date: </b></labal><span>{{comment.date | date}}</span>
+                <br>
+                <br>
+                <labal><b>Type: </b></labal>
+                <span ng-switch on="comment.type">
+                    <span ng-switch-when="0">Enquiry</span>
+                    <span ng-switch-when="1">Feedback</span>
+                    <span ng-switch-when="2">Comment</span>
+                </span>
+                <br>
+                <br>
+                <labal><b>Message: </b></labal><span>{{comment.description}}</span>
+            </div>
+            <br />
+            <a href="#/admin/comment/mgt">Back</a>
+        </div>
+    </div>

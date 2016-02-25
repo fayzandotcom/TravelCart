@@ -1,0 +1,31 @@
+
+    <div class="span9" ng-controller="CommentMgtCtrl">
+        <div ng-hide="userObj.role == 'member'">
+            <h2>Feedback & Enquiries</h2>
+            <p>Please Sign in as member first.</p>
+            <p>If you are not a member than register as member. Thanks!</p>
+            <a href="#/home" >Back to Home</a>
+        </div>
+        <div ng-show="userObj.role == 'member'">
+            <h2>Feedback & Enquiries</h2>
+            <br>
+            <div class="alert alert-success" ng-show="successMsg">
+                <p>{{successMsg}}</p>
+            </div>
+            <div class="alert alert-danger" ng-show="errorMsg">
+                <p>{{errorMsg}}</p>
+            </div>
+            <form>
+                Select Type:
+                <select id="type">
+                    <option value="0">Enquiry</option>
+                    <option value="1">Feedback</option>
+                    <option value="2">Comment</option>
+                </select>
+                <br>
+                <textarea id="desc" style="width: 500px;height: 300px" required="required"></textarea>
+                <br>
+                <button class="btn btn-success" type="submit" ng-click="sendComment()">Send</button>
+            </form>
+        </div>
+    </div>
