@@ -16,7 +16,9 @@ Password: 123
 
 ## Installation
 
-Refer to the section 6 (User Manual) of the document "Project Report", inside docs folder. 
+Refer to the section 6 (User Manual) of the document "Project Report", inside docs folder.
+
+To run this project, travelcart-api (https://github.com/fayzandotcom/travelcart-api) is required which works as backend API.
 
 ## Screenshots
 
