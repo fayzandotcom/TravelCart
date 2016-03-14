@@ -1,39 +1,34 @@
-# AWS SNS Plugin
+# TravelCart
 
-WordPress plugin to send push notifications using Amazon Simple Notification Service
+An e-commerce web application for travel/tour packages.
+
+## Demo
+
+For demo of the application visit http://52.37.44.74/TravelCart/
+
+Admin login
+Email: admin
+Password: 123
+
+Customer login
+Email: customer
+Password: 123
 
 ## Installation
 
-1. Upload the plugin files to the `/wp-content/plugins/aws-sns` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Use the Settings->AWS SNS screen to configure the plugin.
-4. Provide Access Key ID, Secret Access Key, and Region of your Amazon SNS.
+Refer to the section 6 (User Manual) of the document "Project Report", inside docs folder. 
 
-## Usage
+## Screenshots
 
-This plugin is created to send push notifications to different devices using Amazon Simple Notification Service.
-It connects with the Amazon SNS and fetch all the Topics created. And publish messages to that topics.
+Under /docs/screenshots
 
-To use this plugin you must need following things.
-1. Amazon web service account.
-2. Amazon API "Access Key ID" and "Secret Access Key".
-3. Create atleast one topic in SNS.
+## Platform/Framework
 
-Following payload is send to the selected topic, togather with the title and message you provide.
+This project is developed using following
 
-{
-"default": "[MESSAGE]",
-"APNS": "{\"aps\":{\"alert\": \"[MESSAGE]\"} }", 
-"APNS_SANDBOX":"{\"aps\":{\"alert\":\"[MESSAGE]\"}}", 
-"GCM": "{ \"data\": { \"message\": \"[MESSAGE]\", \"title\": \"[TITLE]\", \"datetime\": \"[DATETIME]\" } }", 
-"MPNS" : "<?xml version=\"1.0\" encoding=\"utf-8\"?><wp:Notification xmlns:wp=\"WPNotification\"><wp:Tile><wp:Count>1</wp:Count><wp:Title>[MESSAGE]</wp:Title></wp:Tile></wp:Notification>", 
-"WNS" : "<badge version\"1\" value\"23\"/>"
-}
-
-In above payload following tags are replaced by the data provided.
-[TITLE] -> The title you provide.
-[MESSAGE] -> The message you provide.
-[DATETIME] -> server current datetime.
+1. AngularJS (v1.2.0-rc.2)
+2. Bootstrap (v2.3.2)
+3. jQuery (1.10.2)
 
 ## Contributing
 
