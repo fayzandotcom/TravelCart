@@ -7,11 +7,16 @@ An e-commerce web application for travel/tour packages.
 For demo of the application visit http://52.37.44.74/TravelCart/
 
 Admin login
+
 Email: admin
+
 Password: 123
 
+
 Customer login
+
 Email: customer
+
 Password: 123
 
 ## Installation
