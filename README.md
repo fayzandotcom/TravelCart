@@ -10,8 +10,8 @@ Admin login <br>
 Email: admin <br>
 Password: 123 
 
-Customer login
-Email: customer
+Customer login <br>
+Email: customer <br>
 Password: 123
 
 ## Installation
