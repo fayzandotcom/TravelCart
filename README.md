@@ -2,6 +2,14 @@
 
 An e-commerce web application for travel/tour packages.
 
+## Platform/Framework
+
+This project is developed using following
+
+1. AngularJS (v1.2.0-rc.2)
+2. Bootstrap (v2.3.2)
+3. jQuery (1.10.2)
+
 ## Demo
 
 For demo of the application visit http://52.37.44.74/TravelCart/
@@ -23,14 +31,6 @@ To run this project, travelcart-api (https://github.com/fayzandotcom/travelcart-
 ## Screenshots
 
 Under /docs/screenshots
-
-## Platform/Framework
-
-This project is developed using following
-
-1. AngularJS (v1.2.0-rc.2)
-2. Bootstrap (v2.3.2)
-3. jQuery (1.10.2)
 
 ## Contributing
 
